@@ -13,9 +13,35 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>gapstar</name>
     <description>Demo project for Spring Boot</description>
+
+
+    <developers>
+        <developer>
+            <name>Ayesh Jayasekara</name>
+            <email>ejkpac@gmailcom</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <properties>
         <java.version>1.8</java.version>
+<!--        SET BOTH BELOW PROPERTIES TO FALSE IF YOUR MAVEN BUILD FAILS! -->
+<!--        IT SIMPLY MEANS YOU DO NOT HAVE DOCKER INSTALLED AND THAT'S ALRIGHT..-->
+        <dockerSkip>false</dockerSkip>
+        <dockerSkipPush>true</dockerSkipPush>
+        <dockerSpotifyPluginVersion>1.4.12</dockerSpotifyPluginVersion>
+        <dockerUsername>ejkpac</dockerUsername>
+        <dockerAuthToken>REPLACE YOUR TOKEN</dockerAuthToken>
+        <dockerRepository>ejkpac/showcase</dockerRepository>
+        <dockerImagePrefix>service</dockerImagePrefix>
     </properties>
+
+
+
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -80,6 +106,34 @@
                     </excludes>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>${dockerSpotifyPluginVersion}</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>${dockerSkip}</skip>
+                    <dockerfile>${project.basedir}/Dockerfile</dockerfile>
+                    <skipPush>${dockerSkipPush}</skipPush>
+                    <username>${dockerUsername}</username>
+                    <password>${dockerAuthToken}</password>
+                    <repository>${dockerRepository}</repository>
+                    <tag>${project.artifactId}-${project.version}</tag>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

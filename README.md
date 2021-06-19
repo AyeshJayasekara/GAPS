@@ -1,29 +1,36 @@
-# Getting Started
+# Gapstars Showcase
 
-### Reference Documentation
+### How to run the sample project?
 
-For further reference, please consider the following sections:
+There are a couple of ways you can jump start:
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.5.1/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.5.1/maven-plugin/reference/html/#build-image)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.5.1/reference/htmlsingle/#using-boot-devtools)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.5.1/reference/htmlsingle/#boot-features-developing-web-applications)
-* [Thymeleaf](https://docs.spring.io/spring-boot/docs/2.5.1/reference/htmlsingle/#boot-features-spring-mvc-template-engines)
-* [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/2.5.1/reference/htmlsingle/#production-ready)
-* [Flyway Migration](https://docs.spring.io/spring-boot/docs/2.5.1/reference/htmlsingle/#howto-execute-flyway-database-migrations-on-startup)
-* [Spring Configuration Processor](https://docs.spring.io/spring-boot/docs/2.5.1/reference/htmlsingle/#configuration-metadata-annotation-processor)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.5.1/reference/htmlsingle/#boot-features-jpa-and-spring-data)
+* Run from Dockerized container
+* Build the source and run from your favourite IDE
 
-### Guides
+## Prerequisites
 
-The following guides illustrate how to use some features concretely:
+* just create an empty database on your MySQL server with name 'star' (or any name if you're willing to mod the properties)
+* What about tables and data? It's a magic :D Just create empty database..
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-* [Handling Form Submission](https://spring.io/guides/gs/handling-form-submission/)
-* [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
-* [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
+## Run from Dockerized container
+
+* You must have docker installed and configured
+* just run below command (remember to check the database name, username, password etc)
+
+```shell
+docker run -e spring.datasource.username=root -e spring.datasource.password=root -e spring.datasource.url=jdbc:mysql://localhost:3306/star --net host ejkpac/showcase:gapstar-0.0.1-SNAPSHOT
+```
+
+## Build the source and run from your favourite IDE
+
+* This is self-explanatory just as opening a regular Maven based JAVA project.. No magic :)
+
+```diff
+- If your Maven build fails, you probably do not have docker installed in your machine. 
+- To fix this you have to set two properties to false in POM file line 32,33!   
+```
+
+### Hugs & Bugs
+
+You may reach out to me at : ejkpac@gmail.com
 
