@@ -42,7 +42,7 @@ docker run -e spring.datasource.username=root -e spring.datasource.password=root
 - To fix this you have to set two properties to false in POM file line 32,33!   
 ```
 
-#Using the application
+# Using the application
 
 There are three user accounts,
 
