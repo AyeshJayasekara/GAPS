@@ -10,6 +10,7 @@
 * Spring Security
 * Spring Framework
 * HTML / CSS
+* Maven
 
 ### How to run the sample project?
 
