@@ -43,6 +43,9 @@ There are three user accounts,
 * Shipping has assumed to be based on product weight and flat rate shipping.
 * VAT can be configured from DB
 
+## Code Quality Check
+
+The source code has been already evaluated for quality for latest version. Results can be seen at : https://github.com/AyeshJayasekara/GAPS/blob/master/SONARQUBE_ANALYSIS_REPORT.png
 
 ### Hugs & Bugs
 
