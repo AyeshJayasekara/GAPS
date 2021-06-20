@@ -47,6 +47,11 @@ There are three user accounts,
 
 The source code has been already evaluated for quality for latest version. Results can be seen at : https://github.com/AyeshJayasekara/GAPS/blob/master/SONARQUBE_ANALYSIS_REPORT.png
 
+## Notes
+
+* The UIs are very primitive
+* Tax calculation method to be refactored
+
 ### Hugs & Bugs
 
 You may reach out to me at : ejkpac@gmail.com
