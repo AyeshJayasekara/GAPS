@@ -2,6 +2,7 @@
 
 ## Tech Stack
 
+* Docker
 * MySQL
 * Flyway DB Migrations
 * Hibernate ORM
