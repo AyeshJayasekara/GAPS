@@ -7,6 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository for database queries related to the Cart
+ *
+ * @author Ayesh Jayasekara
+ * @since V1
+ */
 @Repository
 public interface CartRepository extends CrudRepository<CartEntity, CartCompositeID>{
 

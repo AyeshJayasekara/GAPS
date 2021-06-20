@@ -6,6 +6,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository for database queries related to the Categories
+ *
+ * @author Ayesh Jayasekara
+ * @since V1
+ */
 @Repository
 public interface CategoryRepository extends CrudRepository<CategoryEntity, Integer> {
 

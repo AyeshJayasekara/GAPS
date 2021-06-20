@@ -11,19 +11,35 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Service for business logic related to the Categories
+ *
+ * @author Ayesh Jayasekara
+ * @since V1
+ */
 @Service
 @Slf4j
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
+    /**
+     * Constructor for dependency injection
+     *
+     * @param categoryRepository Category Repository {@link CategoryRepository}
+     */
     @Autowired
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
 
-    public Map<Integer, CategoryDTO> fetchActiveCategories(){
+    /**
+     * Retrieves currently active categories
+     *
+     * @return Map of category ID's and Category DTOs
+     */
+    public Map<Integer, CategoryDTO> fetchActiveCategories() {
         Map<Integer, CategoryDTO> categoryMap = new HashMap<>();
         categoryRepository.findAllByEnabledIsTrue()
                 .forEach(categoryEntity -> categoryMap.put(categoryEntity.getId(), convert(categoryEntity)));
@@ -32,7 +48,13 @@ public class CategoryService {
     }
 
 
-    private CategoryDTO convert(CategoryEntity categoryEntity){
+    /**
+     * Convert the Entity to DTO
+     *
+     * @param categoryEntity Database Entity
+     * @return Converted DTO
+     */
+    private CategoryDTO convert(CategoryEntity categoryEntity) {
         CategoryDTO categoryDTO = new CategoryDTO();
         BeanUtils.copyProperties(categoryEntity, categoryDTO);
         return categoryDTO;

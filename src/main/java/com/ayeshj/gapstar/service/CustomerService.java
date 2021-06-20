@@ -12,31 +12,59 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service for business logic related to the Customers
+ *
+ * @author Ayesh Jayasekara
+ * @since V1
+ */
 @Service
 @Slf4j
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
 
+    /**
+     * Constructor for dependency injection
+     *
+     * @param customerRepository Customer Repository {@link CustomerRepository}
+     */
     @Autowired
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
-    public List<CustomerDTO> fetchAllActiveCustomers(){
+    /**
+     * Retrieves active list of customers
+     *
+     * @return List of customer DTOs
+     */
+    public List<CustomerDTO> fetchAllActiveCustomers() {
         List<CustomerDTO> customerDTOList = new ArrayList<>();
         customerRepository.findAll().forEach(customerEntity -> customerDTOList.add(convert(customerEntity)));
         return customerDTOList;
     }
 
-    public CustomerDTO fetchCustomerByID(int customerID){
+    /**
+     * Finds customer by ID
+     *
+     * @param customerID Customer ID to be searched
+     * @return Customer DTO
+     */
+    public CustomerDTO fetchCustomerByID(int customerID) {
 
         Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(customerID);
         return optionalCustomerEntity.map(this::convert).orElseGet(CustomerDTO::new);
 
     }
 
-    private CustomerDTO convert(CustomerEntity customerEntity){
+    /**
+     * Converts database entity to DTO
+     *
+     * @param customerEntity Customer Entity
+     * @return Customer DTO
+     */
+    private CustomerDTO convert(CustomerEntity customerEntity) {
         CustomerDTO customerDTO = new CustomerDTO();
         BeanUtils.copyProperties(customerEntity, customerDTO);
         return customerDTO;

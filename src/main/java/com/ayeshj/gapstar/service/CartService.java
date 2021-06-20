@@ -17,6 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service for business logic related to the Cart
+ *
+ * @author Ayesh Jayasekara
+ * @since V1
+ */
 @Service
 @Slf4j
 public class CartService {
@@ -26,6 +32,14 @@ public class CartService {
     private final SettingRepository settingRepository;
     private final WeightIndexRepository weightIndexRepository;
 
+    /**
+     * Constructor for dependency injection
+     *
+     * @param cartRepository        Cart Repository {@link CartRepository}
+     * @param productService        Product Service {@link ProductService}
+     * @param settingRepository     Settings Repository {@link SettingRepository}
+     * @param weightIndexRepository Shipping cost Repository {@link WeightIndexRepository}
+     */
     @Autowired
     public CartService(CartRepository cartRepository,
                        ProductService productService,
@@ -37,6 +51,15 @@ public class CartService {
     }
 
 
+    /**
+     * Adds a product with specified quantity to user's cart.
+     * <p>
+     * If no cart is present this will action will initiate a cart for the user
+     *
+     * @param customerID Customer's ID
+     * @param productID  Product ID
+     * @param quantity   Quantity to be added to the cart
+     */
     public void addToCart(int customerID, int productID, int quantity) {
 
         Iterable<CartEntity> existingSameCartItems = cartRepository
@@ -56,6 +79,13 @@ public class CartService {
 
     }
 
+
+    /**
+     * View existing cart items and shipping costs, VAT for the cart of the user
+     *
+     * @param customerID Customer ID
+     * @return Customer's cart with shipping cost and VAT calculated
+     */
     public CartDTO viewCart(int customerID) {
 
         BigDecimal totalWeight = BigDecimal.ZERO;

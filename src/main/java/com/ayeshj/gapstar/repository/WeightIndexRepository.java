@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.util.Optional;
 
+/**
+ * Repository for database queries related to the Weight Index of Shipping Charges
+ *
+ * @author Ayesh Jayasekara
+ * @since V1
+ */
 @Repository
 public interface WeightIndexRepository extends CrudRepository<WeightIndexModel, Integer> {
 
