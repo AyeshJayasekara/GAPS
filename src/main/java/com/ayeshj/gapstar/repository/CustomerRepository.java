@@ -4,6 +4,8 @@ import com.ayeshj.gapstar.model.CustomerEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * Repository for database queries related to the Customers
  *
@@ -13,4 +15,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerRepository extends CrudRepository<CustomerEntity, Integer> {
 
+    Optional<CustomerEntity> findFirstByUserEntity_Username(String username);
 }

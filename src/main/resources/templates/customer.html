@@ -20,11 +20,14 @@
 <body>
 Hi, <span th:text="${session.customerFirstName}"> </span>! <br>
 
+
+
 <div>
 
 
     <a th:href="@{/products}">Let's browse some products</a><br>
     <a th:href="@{/cart/view}">See My Cart</a>
+    <a th:href="@{/logout}">Logout</a>
 
 </div>
 

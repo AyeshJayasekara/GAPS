@@ -1,6 +1,9 @@
 com.ayeshj.gapstar
+com.ayeshj.gapstar.configuration
 com.ayeshj.gapstar.controller
 com.ayeshj.gapstar.dto
+com.ayeshj.gapstar.facade
+com.ayeshj.gapstar.facade.impl
 com.ayeshj.gapstar.model
 com.ayeshj.gapstar.repository
 com.ayeshj.gapstar.service

@@ -130,4 +130,15 @@ public class CartService {
         return cartDTO;
 
     }
+
+    /**
+     * Deletes existing items in the user's cart
+     *
+     * @param customerID Customer ID
+     */
+    public void deleteCart(int customerID) {
+        List<CartEntity> cartEntities = cartRepository.findAllByCustomerID(customerID);
+        log.warn("DELETING CART ITEMS FOR USER : {} HAS {} ITEMS", customerID, cartEntities.size());
+        cartRepository.deleteAll(cartEntities);
+    }
 }

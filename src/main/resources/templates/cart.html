@@ -100,6 +100,18 @@
 </head>
 
 <body>
+
+<a th:href="@{/products}">Let's browse some more products</a><br>
+<a th:href="@{/logout}">Logout</a>
+
+<br>
+
+<form th:action="@{/cart/delete}" method="post">
+    <input type="submit" value="Clear My Cart">
+</form>
+
+<br>
+
 <div class="invoice-box">
     <table cellpadding="0" cellspacing="0">
         <tr class="top">

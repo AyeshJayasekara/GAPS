@@ -21,4 +21,8 @@ public class CustomerEntity implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
+    private UserEntity userEntity;
+
 }
