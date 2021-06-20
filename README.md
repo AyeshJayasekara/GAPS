@@ -50,6 +50,8 @@ There are three user accounts,
 * username: ayesh password: ayesh
 * username: barak password: barak
 
+Start the application and navigate to : http://localhost:8080/
+
 ## Shipping and VAT
 
 * Shipping has assumed to be based on product weight and flat rate shipping.
