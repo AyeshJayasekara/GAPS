@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * Controller for functions related to the Products
  *
@@ -46,20 +44,18 @@ public class ProductController {
      * Customer page controller
      *
      * @param model UI model
-     * @param req   HTTP request to access user session
      * @return Return to the product page
-     * @// TODO: 2021-06-20 Category map is being stored in user session, which isn't recommended. Need better approach.
      */
     @GetMapping("/products")
-    public String customerPage(Model model, HttpServletRequest req) {
+    public String customerPage(Model model) {
 
 
-        if (req.getSession().getAttribute("categoryMap") == null) {
-            req.getSession().setAttribute("categoryMap", categoryService.fetchActiveCategories());
+        if (model.getAttribute("categoryMap") == null) {
+            model.addAttribute("categoryMap", categoryService.fetchActiveCategories());
         }
 
-        if (req.getSession().getAttribute("subCategoryMap") == null) {
-            req.getSession().setAttribute("subCategoryMap", subCategoryService.fetchActiveSubCategories());
+        if (model.getAttribute("subCategoryMap") == null) {
+            model.addAttribute("subCategoryMap", subCategoryService.fetchActiveSubCategories());
         }
 
         model.addAttribute("productList", productService.fetchAllProducts());

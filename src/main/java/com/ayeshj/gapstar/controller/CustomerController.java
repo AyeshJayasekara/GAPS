@@ -49,7 +49,7 @@ public class CustomerController {
         CustomerEntity customerEntity = customerAuthenticatedFacade.fetchAuthenticatedUser();
 
         if (customerEntity == null) {
-            return "redirect:/logout";
+            return HomeController.REDIRECT_LOGOUT;
         }
 
         CustomerDTO customerDTO = customerService.fetchCustomerByID(customerEntity.getId());

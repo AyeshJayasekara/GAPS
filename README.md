@@ -30,6 +30,20 @@ docker run -e spring.datasource.username=root -e spring.datasource.password=root
 - To fix this you have to set two properties to false in POM file line 32,33!   
 ```
 
+#Using the application
+
+There are three user accounts,
+
+* username: admin password: admin
+* username: ayesh password: ayesh
+* username: barak password: barak
+
+## Shipping and VAT
+
+* Shipping has assumed to be based on product weight and flat rate shipping.
+* VAT can be configured from DB
+
+
 ### Hugs & Bugs
 
 You may reach out to me at : ejkpac@gmail.com

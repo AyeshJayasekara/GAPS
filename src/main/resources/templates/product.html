@@ -43,8 +43,8 @@ Hi, <span th:text="${session.customerFirstName}"> </span>! <br>
             <td><span th:text="${product.getProductName()}"> Product Name </span></td>
             <td><span th:text="${product.getPrice()}"> Unit Price </span></td>
             <td><span th:text="${product.getUnit()}"> Unit </span></td>
-            <td><span th:text="${session.subCategoryMap.get(product.getSubCategoryID()).getName()}"> Sub Category </span></td>
-            <td><span th:text="${session.categoryMap.get(session.subCategoryMap.get(product.getSubCategoryID())
+            <td><span th:text="${subCategoryMap.get(product.getSubCategoryID()).getName()}"> Sub Category </span></td>
+            <td><span th:text="${categoryMap.get(subCategoryMap.get(product.getSubCategoryID())
             .getCategoryID()).getName()}"> Category </span></td>
             <td>
                 <form th:action="@{/cart/add/{path}(path=${product.getId()})}" method="post">

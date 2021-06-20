@@ -53,7 +53,7 @@ public class CartController {
         CustomerEntity customerEntity = customerAuthenticatedFacade.fetchAuthenticatedUser();
 
         if (customerEntity == null) {
-            return "redirect:/logout";
+            return HomeController.REDIRECT_LOGOUT;
         }
 
         int customerID = customerEntity.getId();
@@ -76,7 +76,7 @@ public class CartController {
         CustomerEntity customerEntity = customerAuthenticatedFacade.fetchAuthenticatedUser();
 
         if (customerEntity == null) {
-            return "redirect:/logout";
+            return HomeController.REDIRECT_LOGOUT;
         }
 
         int customerID = customerEntity.getId();
@@ -95,7 +95,7 @@ public class CartController {
         CustomerEntity customerEntity = customerAuthenticatedFacade.fetchAuthenticatedUser();
 
         if (customerEntity == null) {
-            return "redirect:/logout";
+            return HomeController.REDIRECT_LOGOUT;
         }
 
         int customerID = customerEntity.getId();

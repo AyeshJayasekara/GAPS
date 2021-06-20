@@ -24,6 +24,7 @@ public class HomeController {
 
     private final CustomerService customerService;
     private final ICustomerAuthenticatedFacade customerAuthenticatedFacade;
+    public static final String REDIRECT_LOGOUT = "redirect:/logout";
 
     /**
      * Constructor for dependency injection

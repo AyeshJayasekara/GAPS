@@ -13,6 +13,7 @@ import java.util.Optional;
  * @since V1
  */
 @Repository
+@SuppressWarnings("java:S100")
 public interface CustomerRepository extends CrudRepository<CustomerEntity, Integer> {
 
     Optional<CustomerEntity> findFirstByUserEntity_Username(String username);
