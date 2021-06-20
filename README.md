@@ -1,5 +1,15 @@
 # Gapstars Showcase
 
+## Tech Stack
+
+* MySQL
+* Flyway DB Migrations
+* Hibernate ORM
+* Thymeleaf
+* Spring Security
+* Spring Framework
+* HTML / CSS
+
 ### How to run the sample project?
 
 There are a couple of ways you can jump start:
@@ -51,6 +61,7 @@ The source code has been already evaluated for quality for latest version. Resul
 
 * The UIs are very primitive
 * Tax calculation method to be refactored
+* Unit testing not done due to time constraints
 
 ### Hugs & Bugs
 
