@@ -19,11 +19,11 @@
 -- Current Database: `star`
 --
 
-CREATE
-    DATABASE /*!32312 IF NOT EXISTS */ `star` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-
-USE
-    `star`;
+# CREATE
+#     DATABASE /*!32312 IF NOT EXISTS */ `star` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+#
+# USE
+#     `star`;
 
 --
 -- Table structure for table `category`

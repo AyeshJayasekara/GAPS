@@ -17,4 +17,5 @@ public class CartItemDTO implements Serializable {
         return product.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
 
+
 }
