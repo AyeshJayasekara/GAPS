@@ -27,7 +27,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-<!--        SET BOTH BELOW PROPERTIES TO FALSE IF YOUR MAVEN BUILD FAILS! -->
+<!--        SET BOTH BELOW PROPERTIES TO TRUE IF YOUR MAVEN BUILD FAILS! -->
 <!--        IT SIMPLY MEANS YOU DO NOT HAVE DOCKER INSTALLED AND THAT'S ALRIGHT..-->
         <dockerSkip>false</dockerSkip>
         <dockerSkipPush>true</dockerSkipPush>

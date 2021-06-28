@@ -3,19 +3,13 @@ package com.ayeshj.gapstar.service;
 import com.ayeshj.gapstar.dto.CartDTO;
 import com.ayeshj.gapstar.dto.CartItemDTO;
 import com.ayeshj.gapstar.model.CartEntity;
-import com.ayeshj.gapstar.model.SettingEntity;
-import com.ayeshj.gapstar.model.WeightIndexModel;
 import com.ayeshj.gapstar.repository.CartRepository;
-import com.ayeshj.gapstar.repository.SettingRepository;
-import com.ayeshj.gapstar.repository.WeightIndexRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Service for business logic related to the Cart
@@ -29,25 +23,21 @@ public class CartService {
 
     private final CartRepository cartRepository;
     private final ProductService productService;
-    private final SettingRepository settingRepository;
-    private final WeightIndexRepository weightIndexRepository;
+    private final ShippingCalculatorService shippingCalculatorService;
 
     /**
      * Constructor for dependency injection
      *
-     * @param cartRepository        Cart Repository {@link CartRepository}
-     * @param productService        Product Service {@link ProductService}
-     * @param settingRepository     Settings Repository {@link SettingRepository}
-     * @param weightIndexRepository Shipping cost Repository {@link WeightIndexRepository}
+     * @param cartRepository            Cart Repository {@link CartRepository}
+     * @param productService            Product Service {@link ProductService}
+     * @param shippingCalculatorService Shipping calculator service {@link ShippingCalculatorService}
      */
     @Autowired
     public CartService(CartRepository cartRepository,
-                       ProductService productService,
-                       SettingRepository settingRepository, WeightIndexRepository weightIndexRepository) {
+                       ProductService productService, ShippingCalculatorService shippingCalculatorService) {
         this.cartRepository = cartRepository;
         this.productService = productService;
-        this.settingRepository = settingRepository;
-        this.weightIndexRepository = weightIndexRepository;
+        this.shippingCalculatorService = shippingCalculatorService;
     }
 
 
@@ -88,9 +78,6 @@ public class CartService {
      */
     public CartDTO viewCart(int customerID) {
 
-        BigDecimal totalWeight = BigDecimal.ZERO;
-        BigDecimal orderTotal = BigDecimal.ZERO;
-        CartDTO cartDTO = new CartDTO();
         List<CartItemDTO> cartItemDTOList = new ArrayList<>();
         Iterable<CartEntity> cartEntities = cartRepository.findAllByCustomerID(customerID);
 
@@ -101,33 +88,9 @@ public class CartService {
             cartItemDTO.setQuantity(cartEntity.getQuantity());
             cartItemDTOList.add(cartItemDTO);
 
-            orderTotal = orderTotal.add(cartEntity
-                    .getProduct().getPrice().multiply(BigDecimal.valueOf(cartEntity.getQuantity())));
-
-            totalWeight = totalWeight.add(cartEntity.getProduct().getWeight()
-                    .multiply(BigDecimal.valueOf(cartEntity.getQuantity())));
-
         }
 
-        Optional<SettingEntity> optionalVATSetting = settingRepository.findById("VAT");
-
-        if (optionalVATSetting.isPresent()) {
-            cartDTO.setVat(BigDecimal.valueOf(Double.parseDouble(optionalVATSetting.get().getValue())));
-        } else {
-            cartDTO.setVat(BigDecimal.ZERO);
-        }
-
-        Optional<WeightIndexModel> optionalWeightIndexModel = weightIndexRepository.fetchWeightIndex(totalWeight);
-
-        if (optionalWeightIndexModel.isPresent()) {
-            cartDTO.setShippingCost(optionalWeightIndexModel.get().getAmount());
-        } else {
-            cartDTO.setShippingCost(BigDecimal.ZERO);
-        }
-
-        cartDTO.setCartItemsList(cartItemDTOList);
-        cartDTO.setItemTotalValue(orderTotal);
-        return cartDTO;
+        return shippingCalculatorService.calculateShippingForCart(new CartDTO(cartItemDTOList));
 
     }
 

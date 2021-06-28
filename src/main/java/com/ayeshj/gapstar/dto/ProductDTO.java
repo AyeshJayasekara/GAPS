@@ -24,4 +24,6 @@ public class ProductDTO implements Serializable {
 
     private int subCategoryID;
 
+    private BigDecimal taxPercentage;
+
 }

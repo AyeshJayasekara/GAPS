@@ -37,6 +37,9 @@ public class ProductEntity implements Serializable {
     @Column(name = "sub_category")
     private int subCategoryID;
 
+    @Column(name = "tax_percentage")
+    private BigDecimal taxPercentage;
+
 
 
 }
