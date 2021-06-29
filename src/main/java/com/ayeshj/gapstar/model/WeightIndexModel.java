@@ -25,4 +25,9 @@ public class WeightIndexModel {
     private BigDecimal amount;
 
 
+    public boolean isFitToBlock(BigDecimal weight){
+        return blockStart.compareTo(weight) < 0 && blockEnd.compareTo(weight) >= 0;
+    }
+
+
 }
